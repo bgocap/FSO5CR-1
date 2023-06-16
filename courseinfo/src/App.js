@@ -17,18 +17,7 @@ const Content = (props) => {
   )
 }
 
-/*
-const Content = (props) => {
-  console.log
-  return(
-    <div>
-      <p>Part {props.part} {props.exercises}</p>
-      <p>Part {props.part} {props.exercises}</p>
-      <p>Part {props.part} {props.exercises}</p>
-    </div>
-  )
-}
-*/
+
 
 const Total = (props) => {
   console.log(props)
@@ -46,16 +35,7 @@ const App = () => {
   const exercises2 = 7
   const part3 = 'State of a component'
   const exercises3 = 14
-  /*
-  Array Op1
-  const parts = ['Fundamentals of React','Using props to pass data','State of a component']
-  const exercises=[10,7,14]
-  */
 
-  /*
-  Array Op2
-  const content = [{part:'Fundamentals of React', exercises:10},{part:'Using props to pass data', exercises:7},{part:'State of a component', exercises:14}]
-  */
 
   return (
     <div>
