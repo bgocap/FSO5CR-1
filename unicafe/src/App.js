@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
-// a proper place to define a component
+const Button = ({ text,handleClick }) => (<button onClick={handleClick} >{text}</button>)
+
 const Statistics = ({Good,Neutral,Bad,All,Average,Positive}) => {
+  const StatisticLine =({text,value})=>(<div> {text}:{value}</div>)
   if(All===0){
     return(
       <div>
@@ -13,16 +15,18 @@ const Statistics = ({Good,Neutral,Bad,All,Average,Positive}) => {
     return(
       <div>
         <h1>statistics</h1>
-        <div>good: {Good}</div>
-        <div>neutral: {Neutral}</div>
-        <div>bad: {Bad}</div>
-        <div>all:{All}</div>
-        <div>average: {Average}</div>
-        <div>positive: {Positive} %</div>
+        <StatisticLine text="good" value ={Good} />
+        <StatisticLine text="neutral" value ={Neutral} />
+        <StatisticLine text="bad" value ={Bad} />
+        <StatisticLine text="all" value ={All} />
+        <StatisticLine text="average" value ={Average} />
+        <StatisticLine text="positive" value ={Positive+'%'} />
       </div>
     )
   }
 }
+
+
 
 const App = () => {
   // save clicks of each button to its own state
@@ -35,18 +39,23 @@ const App = () => {
   const handleGood = () =>{setGood(good+1);setAll(all+1);setScore(score+1)}
   const handleNeutral = () => {setNeutral(neutral+1);setAll(all+1);setScore(score+0)}
   const handleBad = () =>{setBad(bad+1);setAll(all+1);setScore(score-1)}
+  const avg = score/all
+  const positive =  (100*good)/all
 
   return (
     <div>
+
       <h1>give feedback</h1>
-      <button onClick={handleGood} >Good</button>
-      <button onClick={handleNeutral} >Neutral</button>
-      <button onClick={handleBad} >Bad</button>
+
+      <Button handleClick={handleGood} text='Good'/>
+      <Button handleClick={handleNeutral} text='Neutral'/>
+      <Button handleClick={handleBad} text='Bad'/>
+
       < Statistics 
-      Good={good} Neutral={neutral} Bad={bad} All={all} 
-      Average={score/all} 
-      Positive={(100*good)/all} 
+      Good={good} Neutral={neutral} Bad={bad} All={all}
+      Score={score} Average={avg} Positive={positive}
       />
+
     </div>
   )
 }
